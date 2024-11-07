@@ -1,10 +1,10 @@
 import {Blockquote, Theme} from "@radix-ui/themes";
 
 # Campaign Creation Within Resonance
+<br/>
 
-{
 <Theme>
-    <br/>
+
     <p>
         If everything went well, then you should be able to create
         a campaign in the Resonance web console (i.e.{' '}
@@ -14,14 +14,17 @@ import {Blockquote, Theme} from "@radix-ui/themes";
     <Blockquote>
         Go to the menu at the top left, go to{' '}
         <strong>Create</strong>, and select{' '}
-        <strong>Overlay</strong>.
+        <strong>Pagelet</strong>.
     </Blockquote>
     <br />
     <Blockquote>
         Enter a name for your new campaign. Select{' '}
-        <strong>Modal</strong> as an option in the dropdown - the
-        dropdown menu is populated based on the application
-        settings JSON <strong>overlayFormats</strong> field.
+        <strong>localhost:3000/</strong> as the option in the{' '}
+        <strong>Surface</strong> dropdown and{' '}
+        <strong>Embedded Home Page Banner</strong> in the{' '}
+        <strong>Format</strong> dropdown - the dropdown menu is
+        populated based on the application settings JSON{' '}
+        <strong>pageletFormats</strong> field.
     </Blockquote>
     <br />
     <Blockquote>
@@ -35,19 +38,10 @@ import {Blockquote, Theme} from "@radix-ui/themes";
     <Blockquote>
         Input text for each input field (ideally different values
         for v1 and v2). You can ignore the{' '}
-        <strong>First CTA Action</strong> and{' '}
-        <strong>Second CTA Action</strong>. Save the campaign by
-        clicking the <strong>Edit</strong> button in the top right
-        and selecting <strong>Save</strong> from the following
-        menu.
-    </Blockquote>
-    <br />
-    <Blockquote>
-        Go to <strong>Conditions</strong> and select the{' '}
-        <strong>Button Clicked</strong> event from the{' '}
-        <strong>Trigger Event</strong> dropdown. This dropdown is
-        also populated by the <strong>events</strong> field of the
-        application settings JSON.
+        <strong>Click Through Action</strong>. Save the campaign
+        by clicking the <strong>Edit</strong> button in the top
+        right and selecting <strong>Save</strong> from the
+        following menu.
     </Blockquote>
     <br />
     <Blockquote>
@@ -68,4 +62,3 @@ import {Blockquote, Theme} from "@radix-ui/themes";
         <strong>Edit</strong>.
     </Blockquote>
 </Theme>
-}

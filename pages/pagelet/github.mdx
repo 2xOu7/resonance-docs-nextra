@@ -1,47 +1,43 @@
 import "@radix-ui/themes/styles.css";
-import {Text, Blockquote, Theme} from "@radix-ui/themes"
-import { CopyBlock, dracula } from 'react-code-blocks'
+import {Text, Theme, Blockquote} from "@radix-ui/themes";
+import { CopyBlock, dracula } from 'react-code-blocks';
 
 # GitHub Sync
 
 {
 <Theme>
     <br/>
-    <Text>
         The first step is setting up GitHub sync through your
         GitHub actions.{' '}
         <strong>
             Note: You can skip if you've already done this step.
         </strong>
-    </Text>
     <br />
     <br />
-    <Blockquote>
-        Click on the "User" icon at the top right and click on
+    <Blockquote>Click on the "User" icon at the top right and click on
         "Account" in the sidebar that appears. This will take you
         to an authorization UI. Generate an{' '}
         <strong>Organization API Key</strong> and save it
         somewhere.
     </Blockquote>
 
+    <br/>
     <br />
 
-    <Blockquote>
-        Create a GitHub Action secret called{' '}
+    <Blockquote>Create a GitHub Action secret called{' '}
         <strong>RESONANCE_GITHUB_SECRET_TOKEN</strong> with value
         equal to the <strong>Organization API Key</strong>{' '}
         generated in the previous step. Here are the{' '}
         <a
-            href={
-                'https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository'
-            }
+            href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository"
+            style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}
         >
             docs
         </a>{' '}
         on how to do so if you are not familiar with doing this in
-        GitHub.
-    </Blockquote>
+        GitHub.</Blockquote>
     <br />
+    <br/>
     <Blockquote>
         Copy and paste what is below into a file called{' '}
         <strong>resonance_settings_sync.yml</strong> in the{' '}
@@ -53,8 +49,8 @@ import { CopyBlock, dracula } from 'react-code-blocks'
         to match the domain of the url for your deployment (i.e.
         app.dropbox.useresonance.com) and you need to edit the
         branch placeholder to point to your main branch name (i.e.
-        master).
-    </Blockquote>
+        master).</Blockquote>
+    <br/>
     <br />
     <CopyBlock
         text={
@@ -80,7 +76,7 @@ import { CopyBlock, dracula } from 'react-code-blocks'
             '      - name: "Call API"\n' +
             '        uses: indiesdev/curl@v1.1\n' +
             '        with:\n' +
-            '          url: https://app.{your_domain}.useresonance.com/api/github/configsettings\n' +
+            '          url: https://{your_domain}.useresonance.com/api/github/configsettings\n' +
             '          method: "POST"\n' +
             '          accept: 200\n' +
             '          body: ${{steps.json_properties.outputs.config}}\n' +

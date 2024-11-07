@@ -1,130 +1,90 @@
-import {Blockquote, Theme} from "@radix-ui/themes";
-import {CopyBlock, dracula} from "react-code-blocks";
+import { Blockquote, Theme } from "@radix-ui/themes";
+import { CopyBlock, dracula } from "react-code-blocks";
 
-# React Side Linking
+# Linking React Format Component To Resonance
 
 {
 <Theme>
-    <br/>
-    <Blockquote>
-        Integrating a component with our React SDK involves
-        wrapping the component within the{' '}
-        <strong>PromptCampaignContext</strong> and making{' '}
-        <strong>logImpression</strong>,{' '}
-        <strong>tearDownCampaign</strong> and{' '}
-        <strong>logConfirmation</strong> SDK calls.{' '}
-    </Blockquote>
     <br />
     <Blockquote>
-        <strong>tearDownCampaign</strong> needs to be called to
-        end the campaign and ensure that a new one can be fetched.
+        Integrating a component with our React SDK involves wrapping the component within the{' '}
+        <strong>MicrocopyContext</strong> and making{' '}
+        <strong>logMicrocopyImpression</strong> and{' '}
+        <strong>logMicrocopyConfirmation</strong> SDK calls.
     </Blockquote>
     <br />
     <Blockquote>
         You should then mount the component as a child of the{' '}
-        <strong>ResonanceCrossChannelClient</strong> component
-        within the component tree, as it consumes{' '}
-        <strong>PromptCampaignContext</strong>.
+        <strong>ResonanceMicrocopyProvider</strong> component within the component tree, as it consumes{' '}
+        <strong>MicrocopyContext</strong>.
     </Blockquote>
     <br />
     <Blockquote>
-        In the example below, we use our own modal implementation
-        (you should substitute yours).
+        In the example below, we use our own banner implementation (you should substitute yours).
     </Blockquote>
     <br />
     <Blockquote>
-        The modal implementation is reading the field values for
-        each field of the modal from{' '}
-        <strong>PromptCampaignContext</strong> (the same field
-        values that you configured in the Resonance UI). This is
-        the key value of Resonance - it ranks and filters your
-        campaigns on the backend, uses AI to fetch the optimal
-        campaign variant, and injects the content of variant into
-        your UI components for instantiation!
+        The banner implementation is reading the field values for each field of the banner from{' '}
+        <strong>MicrocopyContext</strong> (the same field values that you configured in the Resonance UI).
+        This is the key value of Resonance - it ranks and filters your campaigns on the backend, uses
+        AI to fetch the optimal campaign variant, and injects the content of variant into your UI
+        components for instantiation!
     </Blockquote>
     <br />
     <CopyBlock
         language={'jsx'}
         text={
             'import {\n' +
-            '  logOverlayConfirmation,\n' +
-            '  logOverlayImpression,\n' +
-            '  tearDownCampaign,\n' +
-            '  PromptCampaignContext,\n' +
-            "} from 'resonance-client'" +
-            '\n\n' +
-            'export default class SimpleModal extends Component<{}, {}> {\n' +
+            '  logMicrocopyConfirmation,\n' +
+            '  logMicrocopyImpression,\n' +
+            '  MicrocopyContext,\n' +
+            "} from 'resonance-client'\n" +
+            '\n' +
+            'export default class SimpleBanner extends Component<{}, {}> {\n' +
             '  render() {\n' +
             '    return (\n' +
-            '      <PromptCampaignContext.Consumer>\n' +
-            '        {({ campaignToRender }) => {\n' +
-            '          // check to make sure the campaign should be rendered\n' +
-            '          if (\n' +
-            '            campaignToRender === null ||\n' +
-            "            campaignToRender.campaignFormat !== 'Modal'\n" +
-            '          ) {\n' +
+            '      <MicrocopyContext.Consumer>\n' +
+            '        {({ copies }) => {\n' +
+            '          const copiesToFilter = copies.filter(\n' +
+            "            (c) => c.format === 'Embedded Home Page Banner'\n" +
+            '          )\n' +
+            '\n' +
+            '          if (copiesToFilter.length <= 0) {\n' +
             '            return null\n' +
             '          }\n' +
             '\n' +
-            '          logOverlayImpression()\n' +
-            '          const { variantResult } = campaignToRender\n' +
-            '          const { content } = variantResult\n' +
+            '          const copy = copiesToFilter[0]\n' +
+            '          logMicrocopyImpression(\n' +
+            '            copy.campaignId,\n' +
+            '            copy.variant.variantId,\n' +
+            '            copy.variant.variantName\n' +
+            '          )\n' +
             '\n' +
             '          return (\n' +
-            '            <Modal\n' +
-            '              open={true}\n' +
-            '              autoFocus={false}\n' +
-            "              aria-labelledby={'modal-modal-header'}\n" +
-            "              aria-describedby={'modal-modal-description'}\n" +
-            '              onClose={() => tearDownCampaign()}\n' +
-            '            >\n' +
-            '              <Box sx={style}>\n' +
-            '                <Typography\n' +
-            "                  id={'modal-modal-header'}\n" +
-            "                  variant={'h6'}\n" +
-            "                  component={'h2'}\n" +
+            "            <Box style={{ marginLeft: '20vw', marginRight: '20vw' }}>\n" +
+            "              <Alert severity={'info'}>\n" +
+            "                <Typography variant={'body1'}>\n" +
+            "                  {copy.variant.content['description']}\n" +
+            '                </Typography>\n' +
+            '                <Button\n' +
+            '                  onClick={() => {\n' +
+            '                    logMicrocopyConfirmation(\n' +
+            '                      copy.campaignId,\n' +
+            '                      copy.variant.variantId,\n' +
+            '                      copy.variant.variantName\n' +
+            '                    )\n' +
+            '                  }}\n' +
             '                >\n' +
-            "                  {content['header']}\n" +
-            '                </Typography>\n' +
-            "                <Typography id={'modal-modal-description'} sx={{ mt: 2 }}>\n" +
-            "                  {content['description']}\n" +
-            '                </Typography>\n' +
-            "                <div style={{ marginTop: '5vh' }}>\n" +
-            '                  <Button\n' +
-            "                    style={{ float: 'right' }}\n" +
-            "                    variant={'outlined'}\n" +
-            "                    color={'primary'}\n" +
-            '                    onClick={() => {\n' +
-            "                      if (content['first_cta_action'] === 'Confirm') {\n" +
-            '                        logOverlayConfirmation()\n' +
-            '                        tearDownCampaign()\n' +
-            '                      } else {\n' +
-            '                        tearDownCampaign()\n' +
-            '                      }\n' +
-            '                    }}\n' +
-            '                  >\n' +
-            "                    {content['first_cta_text']}\n" +
-            '                  </Button>\n' +
-            '                  <Button\n' +
-            "                    color={'success'}\n" +
-            "                    style={{ float: 'right', marginRight: '1vw' }}\n" +
-            "                    variant={'outlined'}\n" +
-            '                    onClick={() => {\n' +
-            '                         logOverlayConfirmation()\n' +
-            '                         tearDownCampaign()\n' +
-            '                    }}\n' +
-            '                  >\n' +
-            "                    {content['second_cta_text']}\n" +
-            '                  </Button>\n' +
-            '                </div>\n' +
-            '              </Box>\n' +
-            '            </Modal>\n' +
+            "                  {copy.variant.content['button_text']}\n" +
+            '                </Button>\n' +
+            '              </Alert>\n' +
+            '            </Box>\n' +
             '          )\n' +
             '        }}\n' +
-            '      </PromptCampaignContext.Consumer>\n' +
+            '      </MicrocopyContext.Consumer>\n' +
             '    )\n' +
             '  }\n' +
-            '}'
+            '}\n'
         }
         showLineNumbers={true}
         theme={dracula}
