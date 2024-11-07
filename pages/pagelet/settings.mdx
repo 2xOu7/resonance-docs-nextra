@@ -1,106 +1,106 @@
-import { Blockquote, Text, Theme } from "@radix-ui/themes";
-import { CopyBlock, dracula } from "react-code-blocks";
+import { Blockquote, Text, Theme } from '@radix-ui/themes'
+import { CopyBlock, dracula } from 'react-code-blocks'
 
 # Application Settings
 
 {
 <Theme>
-    <br />
-    <Text>
-        The second step is setting up a file called{' '}
-        <strong>resonance_application_settings.json</strong>. This
-        enables you to integrate your design system (i.e.
-        component library) into Resonance, so PM's can launch
-        campaigns with these components self-serve.
-    </Text>
-    <br />
-    <br />
-    <Blockquote>
-        Create a file called{' '}
-        <strong>resonance_application_settings.json</strong> in
-        the root of your repository.
-    </Blockquote>
+  <br />
+  <Text>
+    The second step is setting up a file called{' '}
+    <strong>resonance_application_settings.json</strong>. This
+    enables you to integrate your design system (i.e.
+    component library) into Resonance, so PM's can launch
+    campaigns with these components self-serve.
+  </Text>
+  <br />
+  <br />
+  <Blockquote>
+    Create a file called{' '}
+    <strong>resonance_application_settings.json</strong> in
+    the root of your repository.
+  </Blockquote>
 
-    <br />
+  <br />
 
-    <Blockquote>
-        <strong>Paste/Add the below JSON into the file</strong>{' '}
-        and push the changes to your GitHub repository. To make
-        sure everything works, you should be able to see a GitHub
-        Action successfully run with the name{' '}
-        <strong>Sync resonance-settings</strong>
-        <br />
-    </Blockquote>
+  <Blockquote>
+    <strong>Paste/Add the below JSON into the file</strong>{' '}
+    and push the changes to your GitHub repository. To make
+    sure everything works, you should be able to see a GitHub
+    Action successfully run with the name{' '}
+    <strong>Sync resonance-settings</strong>
     <br />
-    <Blockquote style={{ marginLeft: '2vw' }}>
-        For <strong>pageletFormats</strong>, each JSON object has
-        the following properties:
-    </Blockquote>
+  </Blockquote>
+  <br />
+  <Blockquote style={{ marginLeft: '2vw' }}>
+    For <strong>pageletFormats</strong>, each JSON object has
+    the following properties:
+  </Blockquote>
 
-    <br />
-    <Blockquote style={{ marginLeft: '4vw' }}>
-        <strong>formatInputs</strong>: This specifies the various
-        fields of a component that you want a PM to be configure.
-        So in this example, the fields include the banner body,
-        banner button cta, and banner button click through action.
-    </Blockquote>
-    <br />
-    <Blockquote style={{ marginLeft: '4vw' }}>
-        <strong>formatName</strong>: This is a human-readable name
-        for the new campaign format.
-    </Blockquote>
-    <br />
-    <Blockquote style={{ marginLeft: '4vw' }}>
-        <strong>slot</strong>: This is a human-readable name for
-        the "location" within the website of the campaign format.
-        Different formats can occupy the same part of the website
-        real-estate and as such it is important for those formats
-        to have the same slot value to indicate a conflict.
-    </Blockquote>
-    <br />
-    <Blockquote style={{ marginLeft: '4vw' }}>
-        <strong>surface</strong>: This is the URL of where the
-        campaign format shows up.
-    </Blockquote>
-    <br />
-    <CopyBlock
-        text={
-            '{\n' +
-            '  "config": {\n' +
-            '    "pageletFormats": [\n' +
-            '      {\n' +
-            '        "formatInputs": [\n' +
-            '          {\n' +
-            '            "inputId": "description",\n' +
-            '            "inputDescription": "This is the banner description.",\n' +
-            '            "inputType": "text",\n' +
-            '            "inputName": "Description",\n' +
-            '          },\n' +
-            '          {\n' +
-            '            "inputId": "button_text",\n' +
-            '            "inputDescription": "This is the banner button text.",\n' +
-            '            "inputType": "text",\n' +
-            '            "inputName": "Button Text",\n' +
-            '          },\n' +
-            '          {\n' +
-            '            "inputId": "cta",\n' +
-            '            "inputDescription": "This is the banner button click-through action.",\n' +
-            '            "inputType": "cta",\n' +
-            '            "inputName": "Click Through Action"\n' +
-            '          }\n' +
-            '        ],\n' +
-            '        "formatName": "Embedded Home Page Banner",\n' +
-            '        "slot": "Below Navigation Bar",\n' +
-            '        "surface": "http://localhost:3000/"\n' +
-            '      }\n' +
-            '    ]\n' +
-            '  }\n' +
-            '}'
-        }
-        language={'yaml'}
-        showLineNumbers={true}
-        theme={dracula}
-    />
-    <br />
+  <br />
+  <Blockquote style={{ marginLeft: '4vw' }}>
+    <strong>formatInputs</strong>: This specifies the various
+    fields of a component that you want a PM to be configure.
+    So in this example, the fields include the banner body,
+    banner button cta, and banner button click through action.
+  </Blockquote>
+  <br />
+  <Blockquote style={{ marginLeft: '4vw' }}>
+    <strong>formatName</strong>: This is a human-readable name
+    for the new campaign format.
+  </Blockquote>
+  <br />
+  <Blockquote style={{ marginLeft: '4vw' }}>
+    <strong>slot</strong>: This is a human-readable name for
+    the "location" within the website of the campaign format.
+    Different formats can occupy the same part of the website
+    real-estate and as such it is important for those formats
+    to have the same slot value to indicate a conflict.
+  </Blockquote>
+  <br />
+  <Blockquote style={{ marginLeft: '4vw' }}>
+    <strong>surface</strong>: This is the URL of where the
+    campaign format shows up.
+  </Blockquote>
+  <br />
+  <CopyBlock
+    text={
+      '{\n' +
+      '  "config": {\n' +
+      '    "pageletFormats": [\n' +
+      '      {\n' +
+      '        "formatInputs": [\n' +
+      '          {\n' +
+      '            "inputId": "description",\n' +
+      '            "inputDescription": "This is the banner description.",\n' +
+      '            "inputType": "text",\n' +
+      '            "inputName": "Description",\n' +
+      '          },\n' +
+      '          {\n' +
+      '            "inputId": "button_text",\n' +
+      '            "inputDescription": "This is the banner button text.",\n' +
+      '            "inputType": "text",\n' +
+      '            "inputName": "Button Text",\n' +
+      '          },\n' +
+      '          {\n' +
+      '            "inputId": "cta",\n' +
+      '            "inputDescription": "This is the banner button action.",\n' +
+      '            "inputType": "cta",\n' +
+      '            "inputName": "Click Through Action"\n' +
+      '          }\n' +
+      '        ],\n' +
+      '        "formatName": "Embedded Home Page Banner",\n' +
+      '        "slot": "Below Navigation Bar",\n' +
+      '        "surface": "http://localhost:3000/"\n' +
+      '      }\n' +
+      '    ]\n' +
+      '  }\n' +
+      '}'
+    }
+    language={'yaml'}
+    showLineNumbers={true}
+    theme={dracula}
+  />
+  <br />
 </Theme>
 }
