@@ -1,0 +1,71 @@
+import {Blockquote, Theme} from "@radix-ui/themes";
+
+# Campaign Creation Within Resonance
+
+{
+<Theme>
+    <br/>
+    <p>
+        If everything went well, then you should be able to create
+        a campaign in the Resonance web console (i.e.{' '}
+        <strong>app.{`{your_domain}`}.useresonance.com.)</strong>
+    </p>
+    <br />
+    <Blockquote>
+        Go to the menu at the top left, go to{' '}
+        <strong>Create</strong>, and select{' '}
+        <strong>Overlay</strong>.
+    </Blockquote>
+    <br />
+    <Blockquote>
+        Enter a name for your new campaign. Select{' '}
+        <strong>Modal</strong> as an option in the dropdown - the
+        dropdown menu is populated based on the application
+        settings JSON <strong>overlayFormats</strong> field.
+    </Blockquote>
+    <br />
+    <Blockquote>
+        Upon creating the campaign, you will be redirected to the
+        Campaign Builder UI. In the <strong>Builder</strong> tab,
+        you should see two variants by default (v1 and v2), and a
+        list of input elements, which come from your application
+        settings JSON.
+    </Blockquote>
+    <br />
+    <Blockquote>
+        Input text for each input field (ideally different values
+        for v1 and v2). You can ignore the{' '}
+        <strong>First CTA Action</strong> and{' '}
+        <strong>Second CTA Action</strong>. Save the campaign by
+        clicking the <strong>Edit</strong> button in the top right
+        and selecting <strong>Save</strong> from the following
+        menu.
+    </Blockquote>
+    <br />
+    <Blockquote>
+        Go to <strong>Conditions</strong> and select the{' '}
+        <strong>Button Clicked</strong> event from the{' '}
+        <strong>Trigger Event</strong> dropdown. This dropdown is
+        also populated by the <strong>events</strong> field of the
+        application settings JSON.
+    </Blockquote>
+    <br />
+    <Blockquote>
+        Lastly, go to <strong>Experimentation</strong>. From here,
+        configure the <strong>Rollout Percentage</strong> to 100,
+        choose <strong>test_event</strong> (or whatever you passed
+        in to <strong>logConversion</strong>) from the{' '}
+        <strong>Success Event</strong> dropdown, and select all
+        from the <strong>Primary + Secondary Metrics</strong>{' '}
+        dropdowns.
+    </Blockquote>
+    <br />
+    <Blockquote>
+        Click on <strong>Edit</strong> in the top right and click{' '}
+        <strong>Save</strong>. Then, do the same thing, but then
+        click <strong>Activate</strong>.The page should refresh
+        and there should be a green badge next to{' '}
+        <strong>Edit</strong>.
+    </Blockquote>
+</Theme>
+}
