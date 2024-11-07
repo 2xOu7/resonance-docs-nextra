@@ -9,15 +9,12 @@ const config = {
   footer: {
     content: 'Resonance Docs',
   },
-  feedback: {
-    content: null
-  },
   head: (
       <title>Resonance Docs</title>
   ),
   editLink: {
     component: null
-  }
+  },
 }
 
 export default config
