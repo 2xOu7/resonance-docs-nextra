@@ -1,5 +1,4 @@
 import React from 'react'
-import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config = {
   logo: <strong>Resonance</strong>,
@@ -12,6 +11,12 @@ const config = {
   },
   feedback: {
     content: null
+  },
+  head: (
+      <title>Resonance Docs</title>
+  ),
+  editLink: {
+    component: null
   }
 }
 
