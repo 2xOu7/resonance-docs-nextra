@@ -22,24 +22,33 @@ import { CopyBlock, dracula } from 'react-code-blocks';
     <br />
 
     <Blockquote>
-        Integrate the below component as high up the component
-        tree as possible, and fill in the placeholder props.
+        Integrate the below components as high up the component
+        tree as possible, and fill in the placeholder props. <strong>The props should be the same for both components.</strong>
     </Blockquote>
     <br />
     <CopyBlock
         language={'tsx'}
         text={
-            'import { ResonanceCrossChannelClient } from "resonance-client";\n' +
+            'import { ResonanceCrossChannelClient, \n' +
+            'ResonanceConversionLogger } from "resonance-client";\n' +
             '\n' +
             '// example instantiation\n' +
-            '<ResonanceCrossChannelClient\n' +
-            '   apiKey={"apiKey-that-you-generated-in-part-1"}\n' +
-            '   externalUserId={"user-id-of-a-logged-in-user"}\n' +
-            "   userAttributes={{'<user_attribute_name>: <user_attribute_value>'}}\n" +
-            "   eventContext={{'<event_context_field_name>: <event_context_field_value>'}}\n" +
-            "   apiUrl={'https://app.{your-domain}.useresonance.com'}>\n" +
-            '</ResonanceCrossChannelClient>\n'
-        }
+            '<>\n' +
+            '   <ResonanceConversionLogger\n' +
+            '       apiKey={"apiKey-that-you-generated-in-part-1"}\n' +
+            '       externalUserId={"user-id-of-a-logged-in-user"}\n' +
+            "       userAttributes={{'<user_attribute_name>: <user_attribute_value>'}}\n" +
+            "       eventContext={{'<event_context_field_name>: <event_context_field_value>'}}\n" +
+            "       apiUrl={'https://app.{your-domain}.useresonance.com'}>\n" +
+            '   </ResonanceConversionLogger>\n' +
+            '   <ResonanceCrossChannelClient\n' +
+            '       apiKey={"apiKey-that-you-generated-in-part-1"}\n' +
+            '       externalUserId={"user-id-of-a-logged-in-user"}\n' +
+            "       userAttributes={{'<user_attribute_name>: <user_attribute_value>'}}\n" +
+            "       eventContext={{'<event_context_field_name>: <event_context_field_value>'}}\n" +
+            "       apiUrl={'https://app.{your-domain}.useresonance.com'}>\n" +
+            '   </ResonanceCrossChannelClient>\n' +
+            '</>\n'}
         showLineNumbers={true}
         theme={dracula}
     />
