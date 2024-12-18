@@ -21,20 +21,29 @@ import {CopyBlock, dracula} from "react-code-blocks";
     <br />
 
     <Blockquote>
-        Integrate the below component as high up the component
-        tree as possible, and fill in the placeholder props.
+        Integrate the below components as high up the component
+        tree as possible, and fill in the placeholder props. <strong>The props should be the same for both components.</strong>
     </Blockquote>
     <br />
     <CopyBlock
         language={'tsx'}
         text={
-            '<ResonanceMicrocopyProvider\n' +
-            "    apiUrl={'https://{your_domain}.useresonance.com'}\n" +
-            '    externalUserId={"user-id-of-logged-in-user"}\n' +
-            '    apiKey={"your-api-key"}\n' +
-            "    eventContext={{'<event_context_field_name>: <event_context_field_value>'}}\n" +
-            "    userAttributes={{'<user_attribute_name>: <user_attribute_value>'}}>\n" +
-            '</ResonanceMicrocopyProvider>'
+            '<>\n' +
+            '   <ResonanceConversionLogger\n' +
+            '       apiKey={"apiKey-that-you-generated-in-part-1"}\n' +
+            '       externalUserId={"user-id-of-a-logged-in-user"}\n' +
+            "       userAttributes={{'<user_attribute_name>: <user_attribute_value>'}}\n" +
+            "       eventContext={{'<event_context_field_name>: <event_context_field_value>'}}\n" +
+            "       apiUrl={'https://app.{your-domain}.useresonance.com'}>\n" +
+            '   </ResonanceConversionLogger>\n' +
+            '   <ResonanceMicrocopyProvider\n' +
+            "       apiUrl={'https://{your_domain}.useresonance.com'}\n" +
+            '       externalUserId={"user-id-of-logged-in-user"}\n' +
+            '       apiKey={"your-api-key"}\n' +
+            "       eventContext={{'<event_context_field_name>: <event_context_field_value>'}}\n" +
+            "       userAttributes={{'<user_attribute_name>: <user_attribute_value>'}}>\n" +
+            '   </ResonanceMicrocopyProvider>\n' +
+            '</>\n'
         }
         showLineNumbers={true}
         theme={dracula}
