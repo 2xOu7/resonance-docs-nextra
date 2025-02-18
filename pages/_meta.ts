@@ -1,7 +1,6 @@
 export default {
   "index": "Welcome",
-  "overlay": "Overlay Integration",
-  "pagelet": "Pagelet Integration",
+  "pendo": "Pendo Integration",
   "contact": {
     "title": "Contact ↗",
     "type": "page",
