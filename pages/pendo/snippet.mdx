@@ -1,0 +1,123 @@
+import "@radix-ui/themes/styles.css";
+import {Blockquote, Theme} from "@radix-ui/themes";
+import { CopyBlock, dracula } from 'react-code-blocks';
+
+# Code Snippet
+
+<Theme>
+    <br/>
+    <Blockquote>
+        The code snippet involves two steps: 1) populating the visitor object with the data returned from the API call to Resonance and 2) editing the guide runtime to log exposures to Resonance for linked Pendo guides.
+    </Blockquote>
+
+    <br />
+
+    <CopyBlock
+        style={{width: '100%'}}
+        language={'jsx'}
+        text={`
+    const script = document.createElement('script')
+    script.src = '/pendo-init.js'
+    document.body.appendChild(script)
+
+    script.addEventListener('load', async () => {
+      // make an API request to Resonance to retrieve the content for each guide
+      const response = await axios.post<{
+        [key: string]: PendoGetBestMessagesElement
+      }>(
+        // substitute in your url
+        '<your-resonance-deployment-domain>/api/pendo/getbestmessages',
+        {
+          externalUserId: '<logged-in-user-id>',
+          userAttributes: '<your-visitor-attributes-object>',
+        },
+        {
+          headers: {
+            Authorization:
+              'Bearer <your-resonance-api-token>', //substitute in your api key
+          },
+        }
+      )
+
+      const { data } = response
+
+      // Add guide runtime exposure logging in your pendo.initialize call
+      pendo.initialize({
+        visitor: {
+          id: 'jonathan',
+          email: 'email',
+          full_name: 'full_name',
+          role: 'role',
+          creationDate: 'creationDate',
+          resonance: data, // pass in resonance data as visitor attribute
+        },
+        account: {
+          id: 'id',
+          name: 'name',
+          is_paying: 'is_paying',
+          monthly_value: 'monthly_val',
+          planLevel: 'sub_cost',
+        },
+
+        guides: {
+          // Add exposure logging per guide.
+          // You can copy and paste the whole thing and substitute in your values.
+          globalScripts: [
+            {
+              script: async function (_step: any, guide: PendoGuide) {
+                if (guide.state !== 'public') {
+                  return
+                }
+                const guides = Object.keys(data)
+                  .map((d) => data[d])
+                  .filter((element: PendoGetBestMessagesElement) => {
+                    return element.pendoGuideId === guide.id
+                  })
+
+                if (guides.length > 0) {
+                  const resonanceGuideObj = guides[0]
+
+                  await axiosClient.post(
+                    '<your-resonance-deployment-domain>/api/pendo/logExposure',
+                    {
+                      campaignId: resonanceGuideObj.campaignId,
+                      variantName: resonanceGuideObj.variantName,
+                      externalUserId: '<logged-in-user-id>',
+                      userAttributes: '<your-visitor-attributes-object>',
+                    },
+                    {
+                      headers: {
+                        Authorization:
+                          'Bearer <your-resonance-token>',
+                      },
+                    }
+                  )
+                }
+              },
+              // Only run the above script if:
+              // 1) the guide is active
+              // 2) the guide is linked to Resonance
+              test: function (_step: any, guide: PendoGuide) {
+                console.log(arguments)
+                if (guide.state !== 'public') {
+                  return false
+                }
+                const guides = Object.keys(data)
+                  .map((d) => data[d])
+                  .filter((element: PendoGetBestMessagesElement) => {
+                    return element.pendoGuideId === guide.id
+                  })
+
+                return guides.length > 0
+              },
+            },
+          ],
+        },
+      })
+    })`}
+        theme={dracula}
+        showLineNumbers={true}
+        highlight={'8,9,10-19,20-25,35,45-49,50-59,60-69,70-79,80-89,90-98'}
+    />
+    <br />
+</Theme>
