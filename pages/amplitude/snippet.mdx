@@ -1,0 +1,37 @@
+import { Blockquote, Theme } from "@radix-ui/themes";
+import { CopyBlock, dracula } from "react-code-blocks";
+
+<Theme>
+    <br />
+    <Blockquote>
+        Follow these steps to set up an Amplitude event sync with Resonance:
+        1) In Amplitude, go to <strong>Data &gt; Destinations &gt; Add Destination</strong>.<br />
+        2) Select <strong>Webhook</strong> under <strong>Messaging Destinations</strong>. Make sure it’s tagged with “Events” and “User Properties.”<br />
+        3) In the Webhook URL field, enter <code><strong>&lt;your-resonance-deployment-domain&gt;/amplitude/eventSync</strong></code> (Use your Resonance API key as a Bearer token in the Authorization header.)<br />
+        4) In the event payload configuration, use the JSON below. Replace <code><strong>&lt;metadata key 1 tracked to Amplitude&gt;</strong></code> and <code><strong>&lt;metadata key 2 tracked to Amplitude&gt;</strong></code> with the actual keys you want to capture from Amplitude:
+    </Blockquote>
+
+    <CopyBlock
+        customStyle={{ width: '100%' }}
+        language="jsx"
+        text={`{
+  <#if input.user_id??>
+    "user_id": "\${input.user_id}",
+  </#if>
+  "event_type": "\${input.event_type}",
+  "event_time": "\${input.event_time}",
+  "properties": {
+    <attribute_1>: "\${input.event_properties[<attribute_1>]}",
+    <attribute_2>: "\${input.event_properties[<attribute_2>]}"
+  }
+}`}
+        theme={dracula}
+        showLineNumbers={true}
+        wrapLongLines={true}
+    />
+
+
+    <br />
+</Theme>
+
+
