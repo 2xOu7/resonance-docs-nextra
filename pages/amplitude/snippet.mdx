@@ -8,7 +8,7 @@ import { CopyBlock, dracula } from "react-code-blocks";
         1) In Amplitude, go to <strong>Data &gt; Destinations &gt; Add Destination</strong>.<br />
         2) Select <strong>Webhook</strong> under <strong>Messaging Destinations</strong>. Make sure it’s tagged with “Events” and “User Properties.”<br />
         3) In the Webhook URL field, enter <code><strong>&lt;your-resonance-deployment-domain&gt;/amplitude/eventSync</strong></code> (Use your Resonance API key as a Bearer token in the Authorization header.)<br />
-        4) In the event payload configuration, use the JSON below. Replace <code><strong>&lt;metadata key 1 tracked to Amplitude&gt;</strong></code> and <code><strong>&lt;metadata key 2 tracked to Amplitude&gt;</strong></code> with the actual keys you want to capture from Amplitude:
+        4) In the event payload configuration, use the JSON below. Replace <code><strong>&lt;attribute_1&gt;</strong></code> and <code><strong>&lt;attribute_2&gt;</strong></code> with the actual metadata keys from your Amplitude track event call that you want to forward from Amplitude.
     </Blockquote>
 
     <CopyBlock
