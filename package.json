@@ -5,6 +5,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@propelauth/react": "^2.0.29",
     "@radix-ui/react-icons": "^1.3.1",
     "@radix-ui/themes": "^3.1.4",
     "next": "^15.0.2",
